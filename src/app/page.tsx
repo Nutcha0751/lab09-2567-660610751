@@ -1,3 +1,5 @@
+"use client";
+
 import Footer from "@components/Footer";
 import Header from "@components/Header";
 import Task from "@components/Task";
@@ -9,7 +11,9 @@ import { useState } from "react";
 export default function Home() {
   // Define the interface of task-item object
   interface TaskItem {
-    // your code here
+    id: string;
+    title: string;
+    completed: boolean;
   }
 
   // useState hook for an array of task-item objects
@@ -39,6 +43,9 @@ export default function Home() {
     setTasks(newTasks);
   };
 
+  const totalTasks = tasks.length;
+  const completedTasks = tasks.filter(task => task.completed).length;
+
   return (
     // Main container
     <div className="container mx-auto">
@@ -48,7 +55,7 @@ export default function Home() {
       <div style={{ maxWidth: "400px" }} className="mx-auto">
         {/* Task summary */}
         <p className="text-center text-secondary fst-italic">
-          All (...) Done (...)
+          All ({totalTasks}) Done ({completedTasks})
         </p>
         {/* task input */}
         <TaskInput addTaskFunc={addTask} />
@@ -67,7 +74,7 @@ export default function Home() {
       </div>
 
       {/* //footer section */}
-      <Footer year="2024" fullName="Chayanin Suatap" studentId="12345678" />
+      <Footer year="2024" fullName="Nutcha Khampoung" studentId="660610751" />
     </div>
   );
 }
